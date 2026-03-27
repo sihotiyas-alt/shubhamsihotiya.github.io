@@ -1217,5 +1217,28 @@ document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
 const jObs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*150);jObs.unobserve(e.target);}});},{threshold:.15});
 document.querySelectorAll('.tlrow').forEach(el=>jObs.observe(el));
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".counter");
+
+  counters.forEach(counter => {
+    const target = +counter.getAttribute("data-t");
+    let count = 0;
+    const speed = target / 50;
+
+    const updateCount = () => {
+      count += speed;
+      if (count < target) {
+        counter.innerText = Math.floor(count);
+        requestAnimationFrame(updateCount);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCount();
+  });
+});
+</script>
 </body>
 </html>
