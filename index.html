@@ -154,6 +154,7 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
   z-index:2;
 }
 .photo-frame{
+  position:relative;        /* VERY IMPORTANT */
   display:flex;
   align-items:flex-end;
   justify-content:center;
@@ -185,9 +186,47 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
 
 /* decorative elements on photo */
 .photo-badge-tl{
-  position:absolute;top:10%;left:-20px;z-index:3;
-  background:var(--red);padding:.9rem 1.4rem;
+  position:absolute;
+
+  top:20px;          /* distance from top of image */
+  left:20px;         /* distance from left of image */
+
+  z-index:5;
+
+  background:var(--red);
+  padding:.9rem 1.4rem;
+
+  box-shadow:0 10px 30px rgba(232,25,44,0.4);
 }
+🧠 Why this works
+position:relative on .photo-frame
+→ creates positioning context
+position:absolute on badge
+→ locks it relative to image
+⚠️ If it’s slightly off
+
+Adjust these:
+
+top: 10px;    /* move up */
+left: 10px;   /* move left */
+🔥 PRO LEVEL (Optional — makes it look premium)
+
+Add slight overlap effect:
+
+.photo-badge-tl{
+  transform:translate(-20%, -20%);
+}
+
+👉 This makes it sit partly outside the image, like high-end UI
+
+🎯 Final Result
+Badge sticks to image ✅
+Moves with image on resize ✅
+Looks intentional, not floating ✅
+
+If you want next:
+👉 We can align the MBA badge (bottom-right) perfectly as well
+👉 Or add subtle animation (slide-in on load)
 .pb-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);line-height:1;}
 .pb-lbl{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:.15rem;}
 
