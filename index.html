@@ -136,13 +136,8 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
 
 /* RIGHT: photo */
 .hero-photo-side{
-  position:relative;
-  height:100vh;
-
-  display:flex;
-  align-items:flex-end;     /* bottom align */
-  justify-content:flex-end; /* push to RIGHT */
-
+  position:relative;height:100vh;
+  display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 /* big red diagonal background panel */
@@ -159,21 +154,22 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
   z-index:2;
 }
 .photo-frame{
-  position:relative;
+  position:relative;        /* VERY IMPORTANT */
   display:flex;
-
   align-items:flex-end;
-  justify-content:flex-end;   /* push image to right */
-
-  width:100%;
-  height:100%;
-  padding-right:40px;         /* small right spacing */
+  justify-content:center;
 }
 /* the image sits flush to bottom like Glint template */
 .profile-img{
   width:420px;
   height:78vh;
   object-fit:cover;
+  object-position:center top;
+
+  border-radius:24px;
+  display:block;
+
+  filter:contrast(1.05) saturate(1.05);
 }
 .profile-img:hover{filter:grayscale(0%) contrast(1.08);}
 
@@ -190,8 +186,17 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
 
 /* decorative elements on photo */
 .photo-badge-tl{
-  top:20px;
-  left:20px;
+  position:absolute;
+
+  top:50px;          /* distance from top of image */
+  left:30px;         /* distance from left of image */
+
+  z-index:5;
+
+  background:var(--red);
+  padding:.9rem 1.4rem;
+
+  box-shadow:0 10px 30px rgba(232,25,44,0.4);
 }
 🧠 Why this works
 position:relative on .photo-frame
@@ -247,22 +252,11 @@ If you want next:
 
 /* floating pill */
 .hero-float-pill{
-  position:absolute;
-  bottom:-20px;              /* sits just below image */
-  left:50%;
-  transform:translateX(-50%);
-
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-
-  background:rgba(13,23,38,.95);
-  backdrop-filter:blur(10px);
-
-  border:1px solid var(--border);
-  padding:.6rem 1.2rem;
-
-  z-index:5;
+  position:absolute;bottom:22%;left:5%;z-index:3;
+  display:flex;align-items:center;gap:.7rem;
+  background:rgba(13,23,38,.9);backdrop-filter:blur(12px);
+  border:1px solid var(--border);padding:.7rem 1.1rem;
+  opacity:0;animation:fadeSlideUp .7s 2.2s forwards;
 }
 .hfp-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulseDot 2s infinite;}
 .hfp-txt{font-size:.7rem;font-weight:700;color:var(--dimmer);letter-spacing:.04em;}
@@ -590,7 +584,21 @@ footer{background:#020407;padding:1.6rem 5%;display:flex;justify-content:space-b
 }
   /* 🔥 GLASS CARD EFFECT */
 .glass-card{
-  margin-bottom:0;   /* prevent downward push */
+  position:relative;
+  padding:12px;
+  border-radius:32px;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 40px rgba(232,25,44,0.25);
+
+  transition:all 0.4s ease;
 }
 
 .glass-card:hover{
@@ -678,7 +686,11 @@ footer{background:#020407;padding:1.6rem 5%;display:flex;justify-content:space-b
         <a href="#contact" class="btn-ghost">Let's Connect</a>
       </div>
 
-    
+      <div class="hero-float-pill">
+        <div class="hfp-dot"></div>
+        <span class="hfp-txt">Open to PM · Program Mgmt · Business Analysis roles</span>
+      </div>
+    </div>
 
     <!-- RIGHT PHOTO -->
     <div class="hero-photo-side">
@@ -688,17 +700,10 @@ footer{background:#020407;padding:1.6rem 5%;display:flex;justify-content:space-b
         <img class="profile-img" src="your-photo.jpg" alt="Shubham Sihotiya"/>
         Upload your photo to the same GitHub repo folder as index.html
       -->
-     <div class="photo-frame">
+      <div class="photo-frame">
   <div class="glass-card">
-    <img class="profile-img" src="photo1.jpeg" alt="Shubham"/>
+    <img class="profile-img" src="photo1.jpeg" alt="Shubham Sihotiya"/>
   </div>
-       
-  <!-- MOVE HERE -->
-  <div class="hero-float-pill">
-    <div class="hfp-dot"></div>
-    <span class="hfp-txt">Open to PM · Program Mgmt · Business Analysis roles</span>
-  </div>
-
 </div>
       <div class="photo-badge-tl">
         <div class="pb-num">3+ YEARS</div>
