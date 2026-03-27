@@ -1307,25 +1307,26 @@ const jObs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting)
 document.querySelectorAll('.tlrow').forEach(el=>jObs.observe(el));
 </script>
   <script>
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const counters = document.querySelectorAll(".counter");
 
   counters.forEach(counter => {
     const target = +counter.getAttribute("data-t");
     let count = 0;
-    const speed = target / 50;
 
-    const updateCount = () => {
-      count += speed;
-      if (count < target) {
+    const step = target / 60;
+
+    function update(){
+      count += step;
+      if(count < target){
         counter.innerText = Math.floor(count);
-        requestAnimationFrame(updateCount);
+        requestAnimationFrame(update);
       } else {
         counter.innerText = target;
       }
-    };
+    }
 
-    updateCount();
+    update();
   });
 });
 </script>
