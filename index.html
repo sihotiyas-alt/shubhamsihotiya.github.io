@@ -162,11 +162,14 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
 /* the image sits flush to bottom like Glint template */
 .profile-img{
   width:420px;
-  height:80vh;
+  height:78vh;
   object-fit:cover;
+  object-position:center top;
 
-  border-radius:60px 60px 20px 20px;  /* more curve on top */
-  border:2px solid rgba(232,25,44,0.4);
+  border-radius:24px;
+  display:block;
+
+  filter:contrast(1.05) saturate(1.05);
 }
 .profile-img:hover{filter:grayscale(0%) contrast(1.08);}
 
