@@ -529,6 +529,42 @@ footer{background:#020407;padding:1.6rem 5%;display:flex;justify-content:space-b
   .about-hl{grid-template-columns:1fr;}
   .ufo-left,.ufo-right{padding:5rem 2rem;}
 }
+  /* 🔥 GLASS CARD EFFECT */
+.glass-card{
+  position:relative;
+  padding:12px;
+  border-radius:32px;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 40px rgba(232,25,44,0.25);
+
+  transition:all 0.4s ease;
+}
+
+.glass-card:hover{
+  transform:perspective(1000px) rotateY(-5deg) scale(1.02);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.7),
+    0 0 60px rgba(232,25,44,0.4);
+}
+.glass-card::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:34px;
+
+  background:linear-gradient(135deg, transparent, rgba(232,25,44,0.4), transparent);
+  z-index:-1;
+  opacity:0.6;
+}
 </style>
 </head>
 <body>
