@@ -1624,8 +1624,13 @@ function animC(el){
   const tgt=+el.dataset.t,dur=1800,st=performance.now();
   (function u(now){const f=Math.min((now-st)/dur,1),e=1-Math.pow(1-f,4);el.textContent=Math.round(e*tgt).toLocaleString();if(f<1)requestAnimationFrame(u);})(performance.now());
 }
-const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.counter').forEach(animC);cObs.disconnect();}});},{threshold:.5});
+const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.counter').forEach(animC);cObs.disconnect();}});},{threshold:0.1});
 const sb=document.querySelector('.stats-bar');if(sb)cObs.observe(sb);
+
+// Also run hero counters immediately on page load
+window.addEventListener('load',()=>{
+  document.querySelectorAll('#hero .counter').forEach(animC);
+});
 
 /* ── REVEAL ── */
 const rObs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*70);rObs.unobserve(e.target);}});},{threshold:.07});
