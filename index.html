@@ -614,21 +614,7 @@ section{padding:clamp(4rem,8vw,7rem) 5%;}
   transform:translateX(-50%);height:0;}
 .exp-spine.animated{animation:expSpineGrow 1.8s ease forwards;}
 @keyframes expSpineGrow{from{height:0;}to{height:100%;}}
-<script>
-const spine = document.querySelector('.exp-spine');
 
-window.addEventListener('scroll', () => {
-  const section = document.querySelector('#experience');
-  const rect = section.getBoundingClientRect();
-
-  const windowHeight = window.innerHeight;
-
-  let progress = (windowHeight - rect.top) / (rect.height + windowHeight);
-  progress = Math.max(0, Math.min(1, progress));
-
-  spine.style.height = (progress * 100) + "%";
-});
-</script>
 /* Each row alternates left / right */
 .exp-row{display:grid;grid-template-columns:1fr 60px 1fr;align-items:start;margin-bottom:3rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .exp-row:last-child{margin-bottom:0;}
@@ -1465,7 +1451,7 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
     </div>
 
     <div class="exp-timeline-center">
-
+<div class="exp-spine"></div>
       <!-- Animated spine -->
       <div class="exp-spine" id="expSpine"></div>
 
