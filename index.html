@@ -601,6 +601,79 @@ section{padding:clamp(4rem,8vw,7rem) 5%;}
 .tlrow.vis .tldot{transform:scale(1.2);}
 .tlempty{}
 
+/* ── EXPERIENCE CARDS ── */
+#experience{background:var(--dark);position:relative;}
+#experience::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
+.exp-new-layout{
+  display:flex;
+  justify-content:center;
+}
+.exp-cards-col{display:flex;flex-direction:column;gap:1px;background:var(--border2);}
+.exp-card-new{background:var(--dark);padding:2rem;position:relative;overflow:hidden;transition:background .3s;cursor:pointer;}
+.exp-card-new::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s;}
+.exp-card-new:hover{background:var(--dark2);}
+.exp-card-new:hover::before{background:linear-gradient(90deg,var(--darkred),var(--red));}
+.ecn-inner{display:flex;flex-direction:column;height:100%;}
+.ecn-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem;}
+.ecn-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1px solid var(--border2);transition:border-color .3s;flex-shrink:0;}
+.exp-card-new:hover .ecn-icon{border-color:var(--red);}
+.ecn-cat{font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);border:1px solid var(--border2);padding:.2rem .6rem;}
+.ecn-role{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.25;margin-bottom:.3rem;}
+.ecn-co{font-size:.8rem;color:var(--red2);font-weight:600;}
+.ecn-period{font-size:.7rem;color:var(--dimmer);margin-top:.2rem;margin-bottom:1rem;}
+.ecn-metrics{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.9rem;border-top:1px solid var(--border2);}
+.ecn-mv{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--red);line-height:1;}
+.ecn-ml{font-size:.56rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--dimmer);margin-top:.1rem;}
+.ecn-cta{margin-top:.9rem;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer);transition:color .3s;}
+.exp-card-new:hover .ecn-cta{color:var(--red);}
+/* Career Visual */
+.exp-visual-col{
+  width:100%;
+  max-width:800px;
+  margin:0 auto;
+  position:relative;   /* remove sticky */
+}.exp-visual-wrap{position:relative;}
+.cv-path{background:var(--dark2);border:1px solid var(--border2);padding:2rem;position:relative;overflow:hidden;}
+.cv-path::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--darkred),var(--red));}
+.cv-title{font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.8rem;}
+.cv-track{position:relative;padding-left:2.2rem;}
+.cv-spine{position:absolute;left:.65rem;top:.4rem;width:2px;height:0;background:linear-gradient(to bottom,var(--red),rgba(232,25,44,.1));}
+.cv-spine.animated{animation:cvSpineGrow 1.5s ease forwards;}
+@keyframes cvSpineGrow{from{height:0;}to{height:calc(100% - .8rem);}}
+.cv-node{position:relative;margin-bottom:1.8rem;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;transition:transform .2s;}
+.cv-node:last-child{margin-bottom:0;}
+.cv-node:hover{transform:translateX(4px);}
+.cv-dot-wrap{position:relative;flex-shrink:0;}
+.cv-dot{width:18px;height:18px;border-radius:50%;background:var(--dark3);border:2px solid rgba(232,25,44,.3);display:flex;align-items:center;justify-content:center;transition:all .3s;margin-top:.1rem;}
+.cv-dot-inner{width:7px;height:7px;border-radius:50%;background:rgba(232,25,44,.3);transition:all .3s;}
+.cv-dot-pulse{position:absolute;top:-1px;left:-1px;width:20px;height:20px;border-radius:50%;border:2px solid var(--red);opacity:0;}
+.cv-node.active .cv-dot{background:var(--red);border-color:var(--red);box-shadow:0 0 16px rgba(232,25,44,.5);}
+.cv-node.active .cv-dot-inner{background:var(--white);}
+.cv-node.active .cv-dot-pulse{animation:cvDotPulse 2s ease-out infinite;}
+@keyframes cvDotPulse{0%{transform:scale(1);opacity:.8;}100%{transform:scale(2.5);opacity:0;}}
+.cv-node:hover .cv-dot{border-color:var(--red);background:rgba(232,25,44,.2);}
+.cv-node:hover .cv-dot-inner{background:var(--red);}
+.edu-dot{border-color:rgba(232,25,44,.5)!important;}
+.cv-node-year{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.25rem;}
+.cv-node-role{font-size:.85rem;font-weight:700;color:var(--white);line-height:1.3;}
+.cv-node-co{font-size:.72rem;color:var(--dimmer);margin-top:.12rem;}
+.cv-node-badge{display:inline-block;background:rgba(232,25,44,.15);color:var(--red2);border:1px solid var(--border);font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .55rem;margin-top:.4rem;}
+.cv-node-badge.current{animation:cvBadgePulse 2.5s ease-in-out infinite;}
+@keyframes cvBadgePulse{0%,100%{background:rgba(232,25,44,.15);}50%{background:rgba(232,25,44,.35);}}
+.cv-stat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-top:1.5rem;}
+.cv-stat-card{background:var(--dark3);border:1px solid var(--border2);padding:1rem;text-align:center;transition:border-color .3s,transform .3s;}
+.cv-stat-card:hover{border-color:var(--red);transform:translateY(-3px);}
+.cv-sc-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--red);line-height:1;}
+.cv-sc-lbl{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer);margin-top:.25rem;}
+@keyframes cvFloat1{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes cvFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+@keyframes cvFloat3{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.animate-float-1{animation:cvFloat1 3.5s ease-in-out infinite;}
+.animate-float-2{animation:cvFloat2 4s ease-in-out .5s infinite;}
+.animate-float-3{animation:cvFloat3 3s ease-in-out 1s infinite;}
+@media(max-width:1100px){.exp-new-layout{grid-template-columns:1fr;}.exp-visual-col{position:static;}}
+@media(max-width:768px){.exp-card-new{padding:1.4rem;}.ecn-role{font-size:1rem;}.cv-stat-cards{grid-template-columns:1fr 1fr 1fr;}.cv-sc-num{font-size:1.5rem;}}
+
 /* ── PROJECTS ── */
 #projects{background:var(--dark);position:relative;overflow:hidden;}
 #projects::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(232,25,44,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(232,25,44,.012) 1px,transparent 1px);background-size:44px 44px;}
@@ -1283,138 +1356,198 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
 
 
 
-<!-- ══ EXPERIENCE — GLINT STYLE ══ -->
+<!-- ══ EXPERIENCE — CARD + POPUP STYLE ══ -->
 <section id="experience" aria-label="Professional Experience">
   <div class="cont">
     <div style="text-align:center;margin-bottom:4rem;" class="reveal">
       <div class="stag" style="justify-content:center"><div class="stl"></div><span class="stt">My Career</span><div class="stl"></div></div>
       <h2 class="sh">EXPERIENCE &amp; <em>CAREER</em></h2>
       <p class="sp" style="max-width:580px;margin:.85rem auto 0;">From finance roots in Surat to leading strategic projects at India's largest cinema tech company.</p>
-      <p class="sp" style="max-width:520px;margin:.5rem auto 0;font-size:.82rem;opacity:.75;">Click a role on the left to explore the full story.</p>
+      <p class="sp" style="max-width:520px;margin:.5rem auto 0;font-size:.82rem;opacity:.75;">Click any role to explore the full story.</p>
     </div>
-    <div class="exp-glint">
 
-      <!-- LEFT: Glint-style dot timeline -->
-      <div class="reveal fl">
-        <div class="exp-timeline">
-          <div class="exp-tl-item active" onclick="showExp('ufo')">
-            <div class="exp-tl-year">Aug 2024 – Present</div>
-            <div class="exp-tl-role">Asst. Manager — PM (Special Projects)</div>
-            <div class="exp-tl-co">UFO Moviez India Limited · Mumbai</div>
-          </div>
-          <div class="exp-tl-item" onclick="showExp('ken')">
-            <div class="exp-tl-year">Apr 2023 – Feb 2024</div>
-            <div class="exp-tl-role">Senior Research Analyst</div>
-            <div class="exp-tl-co">Ken Research Pvt. Ltd · Gurugram</div>
-          </div>
-          <div class="exp-tl-item" onclick="showExp('qdb')">
-            <div class="exp-tl-year">Nov – Dec 2023</div>
-            <div class="exp-tl-role">Live Project Researcher</div>
-            <div class="exp-tl-co">Qatar Development Bank × Ken Research · Qatar</div>
-          </div>
-          <div class="exp-tl-item" onclick="showExp('mba')">
-            <div class="exp-tl-year">Sep 2021 – May 2023</div>
-            <div class="exp-tl-role">MBA — Marketing Management</div>
-            <div class="exp-tl-co">Welingkar Institute of Management · Mumbai</div>
-          </div>
-          <div class="exp-tl-item" onclick="showExp('meera')">
-            <div class="exp-tl-year">May 2018 – Jul 2019</div>
-            <div class="exp-tl-role">Accounting & Sales Executive</div>
-            <div class="exp-tl-co">Meera Synthetics Pvt. Ltd · Surat</div>
-          </div>
-        </div>
-      </div>
+    <!-- TWO COLUMN: Cards left, Visual right -->
+    <div class="exp-new-layout">
 
-      <!-- RIGHT: detail cards -->
-      <div class="reveal fr">
+      <!-- LEFT: Experience Cards (like projects) -->
+      <div class="exp-new-layout">
 
-        <div class="exp-detail exp-panel active" id="exp-ufo">
-          <div class="ed-head">
-            <div class="ed-year">Aug 2024 – Present</div>
-            <div class="ed-role">Asst. Manager — Project Management (Special Projects)</div>
-            <div class="ed-co">UFO Moviez India Limited</div>
-            <div class="ed-loc">📍 Mumbai, Maharashtra</div>
-          </div>
-          <div class="ed-divider"></div>
-          <ul class="ed-bullets">
-            <li>Coordinated invoicing cycles and net collection statements across <strong>50+ O&M sites</strong> — improving governance and cash flow visibility for top management</li>
-            <li>Led full-cycle PM for UFO Spotlight — <strong>2 live shows to 1,500+ attendees at ~85% occupancy</strong> — BookMyShow, artists, budget & social media within approved budget</li>
-            <li>Secured and executed a <strong>₹3 Crore barter-model agreement with PlayboxTV</strong> across 4,000+ UFO screens — 5+ campaigns with post-campaign analysis</li>
-            <li>Spearheaded IMPACT e-ticketing rollout across <strong>1,200+ screens PAN India</strong> — coordinating 6 departments as single POC</li>
-            <li>Designed real-time Power BI dashboards & daily MIS for <strong>6+ Nova Cinemas sites</strong> with 100% data integrity</li>
-            <li>Prepared AOP presentations, Dubai client pitch decks, and custom Power BI dashboards for Sales — 100% accuracy on all deliverables</li>
-          </ul>
-          <div class="ed-tags"><span class="ed-tag">MS Project</span><span class="ed-tag">Power BI</span><span class="ed-tag">Change Mgmt</span><span class="ed-tag">PMO</span><span class="ed-tag">Event PM</span><span class="ed-tag">ClickUp</span></div>
-        </div>
-
-        <div class="exp-detail exp-panel" id="exp-ken">
-          <div class="ed-head">
-            <div class="ed-year">Apr 2023 – Feb 2024</div>
-            <div class="ed-role">Senior Research Analyst</div>
-            <div class="ed-co">Ken Research Pvt. Ltd</div>
-            <div class="ed-loc">📍 Gurugram, Haryana</div>
-          </div>
-          <div class="ed-divider"></div>
-          <ul class="ed-bullets">
-            <li>Delivered <strong>5+ end-to-end client projects</strong> across Gulf & South-East Asian markets with 95%+ accuracy — contributing to a <strong>20% increase in company revenues</strong></li>
-            <li>Led on-ground primary research for Qatar Development Bank — <strong>100+ C-suite interviews</strong> building a business case for 30+ Qatari SME clients</li>
-            <li>Implemented SPSS-based forecasting (5-year Moving Averages, Multivariate Regression) using Refinitiv, Bloomberg & Euromonitor — achieving <strong>90%+ data reliability</strong></li>
-          </ul>
-          <div class="ed-tags"><span class="ed-tag">SPSS</span><span class="ed-tag">Bloomberg</span><span class="ed-tag">Market Research</span><span class="ed-tag">Forecasting</span><span class="ed-tag">Competitive Intelligence</span></div>
-        </div>
-
-        <div class="exp-detail exp-panel" id="exp-qdb">
-          <div class="ed-head">
-            <div class="ed-year">Nov – Dec 2023</div>
-            <div class="ed-role">Live Project Researcher</div>
-            <div class="ed-co">Qatar Development Bank × Ken Research</div>
-            <div class="ed-loc">📍 Qatar</div>
-          </div>
-          <div class="ed-divider"></div>
-          <ul class="ed-bullets">
-            <li>Conducted <strong>100+ in-depth C-level interviews</strong> with Qatari SME industry experts across diverse sectors</li>
-            <li>Built a compelling business case pinpointing opportunities and challenges for <strong>30+ Qatari SME clients</strong></li>
-            <li>Employed qualitative research — interviews, surveys, questionnaires — on production, manpower, machines & turnover</li>
-            <li>Honed intercultural communication and project leadership skills across a high-stakes international assignment</li>
-          </ul>
-          <div class="ed-tags"><span class="ed-tag">Primary Research</span><span class="ed-tag">C-Suite Interviews</span><span class="ed-tag">Business Case</span><span class="ed-tag">Qatar</span></div>
-        </div>
-
-        <div class="exp-detail exp-panel" id="exp-mba">
-          <div class="ed-head">
-            <div class="ed-year">Sep 2021 – May 2023</div>
-            <div class="ed-role">Master of Business Administration (MBA)</div>
-            <div class="ed-co">Welingkar Institute of Management</div>
-            <div class="ed-loc">📍 Mumbai, Maharashtra</div>
-          </div>
-          <div class="ed-divider"></div>
-          <ul class="ed-bullets">
-            <li>Specialised in <strong>Marketing Management</strong> — built strategic foundation across marketing, consulting, and business analysis</li>
-            <li>Completed a concurrent <strong>Digital Marketing internship at Transparent Capital</strong> — managed social media platforms and drove brand awareness</li>
-            <li>Completed a concurrent <strong>B2B Sales internship at Tenhard India Pvt. Ltd</strong> — gained hands-on experience in sales pitching and digital subscription industry</li>
-            <li>Actively participated in talent acquisition drives, team leadership, and fundraising initiatives through extracurricular engagements</li>
-          </ul>
-          <div class="ed-tags"><span class="ed-tag">Marketing Strategy</span><span class="ed-tag">Business Analysis</span><span class="ed-tag">Digital Marketing</span><span class="ed-tag">B2B Sales</span><span class="ed-tag">Consulting</span></div>
-        </div>
-
-        <div class="exp-detail exp-panel" id="exp-meera">
-          <div class="ed-head">
-            <div class="ed-year">May 2018 – Jul 2019</div>
-            <div class="ed-role">Accounting & Sales Executive</div>
-            <div class="ed-co">Meera Synthetics Pvt. Ltd</div>
-            <div class="ed-loc">📍 Surat, Gujarat</div>
-          </div>
-          <div class="ed-divider"></div>
-          <ul class="ed-bullets">
-            <li>Managed GST filings, financial reconciliation, and reporting — <strong>reducing operational costs by 15%</strong></li>
-            <li>Handled <strong>25+ B2B client accounts</strong>, improving retention through tailored service delivery and daily engagement</li>
-          </ul>
-          <div class="ed-tags"><span class="ed-tag">GST & Finance</span><span class="ed-tag">B2B Sales</span><span class="ed-tag">Account Management</span></div>
-        </div>
-
+  <div class="exp-visual-col full-width">
+    <div class="exp-visual-wrap">
+      <div class="cv-path">
+        <!-- timeline content -->
       </div>
     </div>
   </div>
+
+</div>
+
+        <div class="exp-card-new reveal" onclick="openExpModal('ken')">
+          <div class="ecn-inner">
+            <div class="ecn-top">
+              <div class="ecn-icon">🔍</div>
+              <span class="ecn-cat">Management Consulting</span>
+            </div>
+            <div class="ecn-role">Senior Research Analyst</div>
+            <div class="ecn-co">Ken Research Pvt. Ltd</div>
+            <div class="ecn-period">Apr 2023 – Feb 2024 · Gurugram</div>
+            <div class="ecn-metrics">
+              <div class="ecn-m"><div class="ecn-mv">5+</div><div class="ecn-ml">Projects</div></div>
+              <div class="ecn-m"><div class="ecn-mv">20%</div><div class="ecn-ml">Revenue ↑</div></div>
+              <div class="ecn-m"><div class="ecn-mv">95%+</div><div class="ecn-ml">Accuracy</div></div>
+            </div>
+            <div class="ecn-cta">Explore Role →</div>
+          </div>
+        </div>
+
+        <div class="exp-card-new reveal" onclick="openExpModal('qdb')">
+          <div class="ecn-inner">
+            <div class="ecn-top">
+              <div class="ecn-icon">🌍</div>
+              <span class="ecn-cat">International Research · Qatar</span>
+            </div>
+            <div class="ecn-role">Live Project Researcher</div>
+            <div class="ecn-co">Qatar Development Bank × Ken Research</div>
+            <div class="ecn-period">Nov – Dec 2023 · Qatar</div>
+            <div class="ecn-metrics">
+              <div class="ecn-m"><div class="ecn-mv">100+</div><div class="ecn-ml">C-Suite Interviews</div></div>
+              <div class="ecn-m"><div class="ecn-mv">30+</div><div class="ecn-ml">SME Clients</div></div>
+            </div>
+            <div class="ecn-cta">Explore Role →</div>
+          </div>
+        </div>
+
+        <div class="exp-card-new reveal" onclick="openExpModal('mba')">
+          <div class="ecn-inner">
+            <div class="ecn-top">
+              <div class="ecn-icon">🎓</div>
+              <span class="ecn-cat">Education</span>
+            </div>
+            <div class="ecn-role">MBA — Marketing Management</div>
+            <div class="ecn-co">Welingkar Institute of Management</div>
+            <div class="ecn-period">Sep 2021 – May 2023 · Mumbai</div>
+            <div class="ecn-metrics">
+              <div class="ecn-m"><div class="ecn-mv">2</div><div class="ecn-ml">Internships</div></div>
+              <div class="ecn-m"><div class="ecn-mv">Top</div><div class="ecn-ml">B-School</div></div>
+            </div>
+            <div class="ecn-cta">Explore Details →</div>
+          </div>
+        </div>
+
+        <div class="exp-card-new reveal" onclick="openExpModal('meera')">
+          <div class="ecn-inner">
+            <div class="ecn-top">
+              <div class="ecn-icon">💼</div>
+              <span class="ecn-cat">Finance & Sales</span>
+            </div>
+            <div class="ecn-role">Accounting &amp; Sales Executive</div>
+            <div class="ecn-co">Meera Synthetics Pvt. Ltd</div>
+            <div class="ecn-period">May 2018 – Jul 2019 · Surat</div>
+            <div class="ecn-metrics">
+              <div class="ecn-m"><div class="ecn-mv">15%</div><div class="ecn-ml">Cost ↓</div></div>
+              <div class="ecn-m"><div class="ecn-mv">25+</div><div class="ecn-ml">B2B Accounts</div></div>
+            </div>
+            <div class="ecn-cta">Explore Role →</div>
+          </div>
+        </div>
+
+      </div><!-- /exp-cards-col -->
+
+      <!-- RIGHT: Animated Career Visual -->
+      <div class="exp-visual-col reveal fr">
+        <div class="exp-visual-wrap">
+
+          <!-- Animated vertical career path -->
+          <div class="cv-path">
+            <div class="cv-title">CAREER TIMELINE</div>
+
+            <div class="cv-track">
+              <!-- Animated spine line -->
+              <div class="cv-spine"></div>
+
+              <div class="cv-node active" data-id="ufo">
+                <div class="cv-dot-wrap">
+                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
+                  <div class="cv-dot-pulse"></div>
+                </div>
+                <div class="cv-node-content">
+                  <div class="cv-node-year">2024 – Present</div>
+                  <div class="cv-node-role">Asst. Manager PM</div>
+                  <div class="cv-node-co">UFO Moviez</div>
+                  <div class="cv-node-badge current">Current</div>
+                </div>
+              </div>
+
+              <div class="cv-node" data-id="ken">
+                <div class="cv-dot-wrap">
+                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
+                </div>
+                <div class="cv-node-content">
+                  <div class="cv-node-year">2023 – 2024</div>
+                  <div class="cv-node-role">Sr. Research Analyst</div>
+                  <div class="cv-node-co">Ken Research</div>
+                </div>
+              </div>
+
+              <div class="cv-node" data-id="qdb">
+                <div class="cv-dot-wrap">
+                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
+                </div>
+                <div class="cv-node-content">
+                  <div class="cv-node-year">Nov – Dec 2023</div>
+                  <div class="cv-node-role">Live Researcher</div>
+                  <div class="cv-node-co">Qatar Dev. Bank</div>
+                </div>
+              </div>
+
+              <div class="cv-node" data-id="mba">
+                <div class="cv-dot-wrap">
+                  <div class="cv-dot edu-dot"><div class="cv-dot-inner"></div></div>
+                </div>
+                <div class="cv-node-content">
+                  <div class="cv-node-year">2021 – 2023</div>
+                  <div class="cv-node-role">MBA Marketing</div>
+                  <div class="cv-node-co">Welingkar</div>
+                </div>
+              </div>
+
+              <div class="cv-node" data-id="meera">
+                <div class="cv-dot-wrap">
+                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
+                </div>
+                <div class="cv-node-content">
+                  <div class="cv-node-year">2018 – 2019</div>
+                  <div class="cv-node-role">Acctg &amp; Sales Exec</div>
+                  <div class="cv-node-co">Meera Synthetics</div>
+                </div>
+              </div>
+
+            </div><!-- /cv-track -->
+          </div><!-- /cv-path -->
+
+          <!-- Floating stats cards -->
+          <div class="cv-stat-cards">
+            <div class="cv-stat-card animate-float-1">
+              <div class="cv-sc-num">3+</div>
+              <div class="cv-sc-lbl">Years Experience</div>
+            </div>
+            <div class="cv-stat-card animate-float-2">
+              <div class="cv-sc-num">4</div>
+              <div class="cv-sc-lbl">Organisations</div>
+            </div>
+            <div class="cv-stat-card animate-float-3">
+              <div class="cv-sc-num">3</div>
+              <div class="cv-sc-lbl">Cities / Countries</div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /exp-visual-col -->
+
+    </div><!-- /exp-new-layout -->
+  </div>
+
+  <!-- Experience Modals (reuses existing modal-overlay) -->
 </section>
 
 <!-- PROJECTS -->
@@ -1506,7 +1639,7 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
         <div class="cquote"><p>"Curious. Collaborative. Always ready to create value from complexity."</p></div>
       </div>
       <div class="ccards reveal fr">
-        <a href="mailto:shubhamsihotiya@outlook.com" class="ccrd"><div class="ccicon">✉️</div><div><div class="cclbl">Email</div><div class="ccval">shubhamsihotiya@outlook.com</div></div></a>
+        <a href="/cdn-cgi/l/email-protection#cab9a2bfa8a2aba7b9a3a2a5bea3b3ab8aa5bfbea6a5a5a1e4a9a5a7" class="ccrd"><div class="ccicon">✉️</div><div><div class="cclbl">Email</div><div class="ccval"><span class="__cf_email__" data-cfemail="ddaeb5a8bfb5bcb0aeb4b5b2a9b4a4bc9db2a8a9b1b2b2b6f3beb2b0">[email&#160;protected]</span></div></div></a>
         <a href="https://www.linkedin.com/in/sihotiyashubham" target="_blank" class="ccrd"><div class="ccicon">💼</div><div><div class="cclbl">LinkedIn</div><div class="ccval">linkedin.com/in/sihotiyashubham</div></div></a>
         <a href="https://www.shubhamsihotiya.com" target="_blank" class="ccrd"><div class="ccicon">🌐</div><div><div class="cclbl">Website</div><div class="ccval">www.shubhamsihotiya.com</div></div></a>
         <a href="#" class="ccrd"><div class="ccicon">📍</div><div><div class="cclbl">Location</div><div class="ccval">Mumbai Metropolitan Region, India</div></div></a>
@@ -1526,7 +1659,7 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
   <div class="modal-box" id="modalBox"></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── PROJECT DATA ── */
 const projects={
   impact:{title:"IMPACT E-Ticketing — PAN India Rollout",cat:"Cinema Technology · Flagship Project",metrics:[{v:"1,200+",l:"Screens"},{v:"6",l:"Departments"},{v:"PAN India",l:"Scale"},{v:"100%",l:"Digital Transition"}],situation:"UFO Moviez needed to digitise ticketing operations across its entire PAN India cinema network, replacing legacy manual workflows with a unified electronic system.",action:"Orchestrated end-to-end change management — driving stakeholder alignment across 6 departments, managing partner training, and overseeing seamless digital transition.",bullets:["Acted as single POC for all internal stakeholders and senior-level partners throughout the rollout","Maintained MS Project schedules, tracked risks and flagged deviations proactively","Coordinated 6 departments simultaneously — Marketing, Finance, Product, Tech, Commercials & Suppliers","Implemented structured tracking mechanisms for deadlines, scope, and risk adherence"],result:"Full digital transition across 1,200+ cinema screens PAN India — resulting in significantly faster ticketing workflows and improved partner satisfaction.",tags:["MS Project","Change Management","PMO","Stakeholder Mgmt","PAN India"]},
@@ -1565,14 +1698,128 @@ heroWords.forEach(w=>{
   qEl.appendChild(span);
 });
 
-/* ── EXPERIENCE SWITCHER ── */
-function showExp(id){
-  document.querySelectorAll('.exp-tl-item').forEach(i=>i.classList.remove('active'));
-  document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const panel=document.getElementById('exp-'+id);
-  if(panel)panel.classList.add('active');
+/* ── EXPERIENCE MODAL DATA ── */
+const expData={
+  ufo:{
+    title:"Asst. Manager — Project Management (Special Projects)",
+    cat:"Media & Entertainment · UFO Moviez India Limited",
+    period:"Aug 2024 – Present · Mumbai, Maharashtra",
+    metrics:[{v:"₹3 Cr",l:"PlayboxTV Deal"},{v:"1,200+",l:"Screens Rolled Out"},{v:"50+",l:"O&M Sites"},{v:"6",l:"Departments"}],
+    bullets:[
+      "Coordinated invoicing cycles and net collection statements across <strong>50+ O&M sites</strong> — improving governance and cash flow visibility for top management",
+      "Led full-cycle PM for UFO Spotlight — <strong>2 live shows to 1,500+ attendees at ~85% occupancy</strong> — BookMyShow, artists, budget & social media within approved budget",
+      "Secured and executed a <strong>₹3 Crore barter-model agreement with PlayboxTV</strong> across 4,000+ UFO screens — 5+ campaigns with post-campaign analysis",
+      "Spearheaded IMPACT e-ticketing rollout across <strong>1,200+ screens PAN India</strong> — coordinating 6 departments as single POC",
+      "Designed real-time Power BI dashboards & daily MIS for <strong>6+ Nova Cinemas sites</strong> with 100% data integrity",
+      "Prepared AOP presentations, Dubai client pitch decks, and custom Power BI dashboards for Sales — 100% accuracy on all deliverables"
+    ],
+    tags:["MS Project","Power BI","Change Mgmt","PMO","Event PM","ClickUp","Stakeholder Mgmt"]
+  },
+  ken:{
+    title:"Senior Research Analyst",
+    cat:"Management Consulting · Ken Research Pvt. Ltd",
+    period:"Apr 2023 – Feb 2024 · Gurugram, Haryana",
+    metrics:[{v:"5+",l:"Projects"},{v:"20%",l:"Revenue Growth"},{v:"95%+",l:"Accuracy"},{v:"Gulf & SEA",l:"Markets"}],
+    bullets:[
+      "Delivered <strong>5+ end-to-end client projects</strong> across Gulf & South-East Asian markets with 95%+ accuracy — contributing to a <strong>20% increase in company revenues</strong>",
+      "Led on-ground primary research for Qatar Development Bank — <strong>100+ C-suite interviews</strong> building a business case for 30+ Qatari SME clients",
+      "Implemented SPSS-based forecasting (5-year Moving Averages, Multivariate Regression) using Refinitiv, Bloomberg & Euromonitor — achieving <strong>90%+ data reliability</strong>",
+      "Collaborated with 4+ cross-functional teams to advance client projects, driving revenue growth"
+    ],
+    tags:["SPSS","Bloomberg","Market Research","Forecasting","Competitive Intelligence","Refinitiv"]
+  },
+  qdb:{
+    title:"Live Project Researcher",
+    cat:"International Consulting · Qatar Development Bank × Ken Research",
+    period:"Nov – Dec 2023 · Qatar",
+    metrics:[{v:"100+",l:"C-Suite Interviews"},{v:"30+",l:"SME Clients"},{v:"Qatar",l:"On-Ground"},{v:"95%+",l:"Accuracy"}],
+    bullets:[
+      "Conducted <strong>100+ in-depth C-level interviews</strong> with Qatari SME industry experts across diverse sectors",
+      "Built a compelling business case pinpointing opportunities and challenges for <strong>30+ Qatari SME clients</strong>",
+      "Employed qualitative research — interviews, surveys, questionnaires — on production, manpower, machines & turnover",
+      "Honed intercultural communication and project leadership skills across a high-stakes international assignment"
+    ],
+    tags:["Primary Research","C-Suite Interviews","Business Case","Qatar","Qualitative Research"]
+  },
+  mba:{
+    title:"Master of Business Administration (MBA)",
+    cat:"Education · Welingkar Institute of Management",
+    period:"Sep 2021 – May 2023 · Mumbai, Maharashtra",
+    metrics:[{v:"MBA",l:"Marketing Mgmt"},{v:"2",l:"Internships"},{v:"Top",l:"B-School Mumbai"}],
+    bullets:[
+      "Specialised in <strong>Marketing Management</strong> — built strategic foundation across marketing, consulting, and business analysis",
+      "Completed a concurrent <strong>Digital Marketing internship at Transparent Capital</strong> — managed social media platforms and drove brand awareness",
+      "Completed a concurrent <strong>B2B Sales internship at Tenhard India Pvt. Ltd</strong> — gained hands-on experience in sales pitching and digital subscription industry",
+      "Actively participated in talent acquisition drives, team leadership, and fundraising initiatives"
+    ],
+    tags:["Marketing Strategy","Business Analysis","Digital Marketing","B2B Sales","Consulting"]
+  },
+  meera:{
+    title:"Accounting & Sales Executive",
+    cat:"Finance & Sales · Meera Synthetics Pvt. Ltd",
+    period:"May 2018 – Jul 2019 · Surat, Gujarat",
+    metrics:[{v:"15%",l:"Cost Reduction"},{v:"25+",l:"B2B Accounts"},{v:"10+",l:"Products Showcased"}],
+    bullets:[
+      "Managed GST filings, financial reconciliation, and reporting — <strong>reducing operational costs by 15%</strong>",
+      "Handled <strong>25+ B2B client accounts</strong>, improving retention through tailored service delivery and daily engagement",
+      "Showcased 10+ textile products at Surat Weave Knitt Exhibition — attracting and acquiring new clients",
+      "Evaluated and tallied GST returns quarterly with appropriate financial adjustments"
+    ],
+    tags:["GST & Finance","B2B Sales","Account Management","Financial Analysis"]
+  }
+};
+
+function openExpModal(id){
+  const p=expData[id];if(!p)return;
+  document.getElementById('modalBox').innerHTML=`
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">${p.title}</div>
+        <div class="modal-cat">${p.cat}</div>
+        <div style="font-size:.68rem;color:var(--dimmer);margin-top:.3rem;">📍 ${p.period}</div>
+      </div>
+      <div class="modal-close" onclick="closeModal()">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">${p.metrics.map(m=>`<div class="modal-metric"><div class="mv">${m.v}</div><div class="ml">${m.l}</div></div>`).join('')}</div>
+      <div class="modal-section-title">Key Contributions</div>
+      <ul class="modal-bullets">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+      <div class="modal-tags">${p.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('')}</div>
+    </div>`;
+
+  // Highlight active node in visual
+  document.querySelectorAll('.cv-node').forEach(n=>n.classList.remove('active'));
+  const node=document.querySelector(`.cv-node[data-id="${id}"]`);
+  if(node)node.classList.add('active');
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
+
+/* ── EXPERIENCE SWITCHER (kept for legacy) ── */
+function showExp(id){
+  openExpModal(id);
+}
+
+/* ── CV NODE click ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.cv-node').forEach(node=>{
+    node.addEventListener('click',()=>{
+      const id=node.dataset.id;
+      if(id)openExpModal(id);
+    });
+  });
+  // Animate spine on scroll
+  const spineObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('animated');
+      }
+    });
+  },{threshold:.2});
+  const spine=document.querySelector('.cv-spine');
+  if(spine){spineObs.observe(spine);}
+});
 
 /* ── SKILL CHART ── */
 const ringData={
@@ -1607,7 +1854,7 @@ const c=document.getElementById('cur'),r=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
 (function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(t);})();
-document.querySelectorAll('a,button,.pcard,.ecard,.ui,.ahl,.tool-card,.rec-card,.sc,.exp-tl-item,.legend-item').forEach(el=>{
+document.querySelectorAll('a,button,.pcard,.ecard,.ui,.ahl,.tool-card,.rec-card,.sc,.exp-tl-item,.legend-item,.exp-card-new,.cv-node,.cv-stat-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{c.style.width='4px';c.style.height='4px';r.style.width='44px';r.style.height='44px';});
   el.addEventListener('mouseleave',()=>{c.style.width='8px';c.style.height='8px';r.style.width='32px';r.style.height='32px';});
 });
@@ -1689,15 +1936,8 @@ fixMobileTimeline();
 </script>
   <script>
 window.addEventListener("load", () => {
-  const counters = document.querySelectorAll(".counter");
-
-  counters.forEach(counter => {
-    const target = +counter.getAttribute("data-t");
-    let count = 0;
-
-    const step = target / 60;
-
-    function       update();
+  const counters = do
+      update();
     }
 
     update();
