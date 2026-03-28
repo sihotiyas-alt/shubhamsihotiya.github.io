@@ -162,7 +162,7 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
    HERO — GLINT STYLE
 ══════════════════════════════════════ */
 #hero{
-  min-height:80vh;position:relative;display:flex;align-items:center;
+  min-height:100vh;position:relative;display:flex;align-items:center;
   overflow:hidden;background:var(--black);
 }
 /* film grain */
@@ -186,7 +186,7 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
   position:relative;z-index:3;
   display:grid;grid-template-columns:1fr 1fr;
   gap:0;align-items:center;
-  min-height:100vh;width:100%;
+  min-height:70vh;width:100%;
   padding-left:calc(4% + 24px);padding-right:0;
 }
 
@@ -1551,10 +1551,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 const heroWords=[
   {text:'Where',red:false,delay:.4},
   {text:'Strategy',red:false,delay:.4},
-  {text:'Meets',red:false,delay:.6},
-  {text:'the',red:false,delay:6},
-  {text:'Big',red:true,delay:8},
-  {text:'Screen',red:true,delay:8}
+  {text:'Meets',red:false,delay:.4},
+  {text:'the',red:false,delay:4},
+  {text:'Big',red:true,delay:6},
+  {text:'Screen',red:true,delay:6}
 ];
 const qEl=document.getElementById('heroQuote');
 heroWords.forEach(w=>{
