@@ -621,8 +621,25 @@ section{padding:clamp(4rem,8vw,7rem) 5%;}
 .exp-row.vis{opacity:1;transform:translateY(0);}
 
 /* The card */
-.exp-tl-card{background:var(--dark2);border:1px solid var(--border2);padding:1.8rem;position:relative;overflow:hidden;
-  transition:border-color .3s,transform .3s,box-shadow .3s;cursor:pointer;}
+.exp-tl-card{
+  background:var(--dark2);
+  border:1px solid var(--border2);
+  padding:1.2rem 1.3rem;
+  max-width:420px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    box-shadow .35s ease,
+    border-color .3s;
+}
+
+.exp-tl-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 12px 40px rgba(232,25,44,.18);
+}
 .exp-tl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--darkred),var(--red));}
 .exp-tl-card:hover{border-color:var(--border);transform:scale(1.02);box-shadow:0 8px 30px rgba(232,25,44,.12);}
 
