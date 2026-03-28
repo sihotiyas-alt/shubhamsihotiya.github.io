@@ -162,7 +162,7 @@ nav.solid{background:rgba(4,8,15,.96);backdrop-filter:blur(20px);border-bottom:1
    HERO — GLINT STYLE
 ══════════════════════════════════════ */
 #hero{
-  min-height:100vh;position:relative;display:flex;align-items:center;
+  min-height:80vh;position:relative;display:flex;align-items:center;
   overflow:hidden;background:var(--black);
 }
 /* film grain */
@@ -1550,11 +1550,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 /* ── HERO WORD ANIMATION ── */
 const heroWords=[
   {text:'Where',red:false,delay:.4},
-  {text:'Strategy',red:false,delay:.6},
-  {text:'Meets',red:false,delay:.8},
-  {text:'the',red:false,delay:1.0},
-  {text:'Big',red:true,delay:1.2},
-  {text:'Screen',red:true,delay:1.4}
+  {text:'Strategy',red:false,delay:.4},
+  {text:'Meets',red:false,delay:.6},
+  {text:'the',red:false,delay:6},
+  {text:'Big',red:true,delay:8},
+  {text:'Screen',red:true,delay:8}
 ];
 const qEl=document.getElementById('heroQuote');
 heroWords.forEach(w=>{
