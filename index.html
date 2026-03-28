@@ -601,78 +601,107 @@ section{padding:clamp(4rem,8vw,7rem) 5%;}
 .tlrow.vis .tldot{transform:scale(1.2);}
 .tlempty{}
 
-/* ── EXPERIENCE CARDS ── */
+/* ── EXPERIENCE — CENTERED TIMELINE ── */
 #experience{background:var(--dark);position:relative;}
 #experience::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
-.exp-new-layout{
-  display:flex;
-  justify-content:center;
+
+/* Centered timeline wrapper */
+.exp-timeline-center{max-width:900px;margin:0 auto;position:relative;}
+
+/* Vertical spine — centered */
+.exp-spine{position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--red),rgba(232,25,44,.15));
+  transform:translateX(-50%);height:0;}
+.exp-spine.animated{animation:expSpineGrow 1.8s ease forwards;}
+@keyframes expSpineGrow{from{height:0;}to{height:100%;}}
+
+/* Each row alternates left / right */
+.exp-row{display:grid;grid-template-columns:1fr 60px 1fr;align-items:start;margin-bottom:3rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.exp-row:last-child{margin-bottom:0;}
+.exp-row.vis{opacity:1;transform:translateY(0);}
+
+/* The card */
+.exp-tl-card{background:var(--dark2);border:1px solid var(--border2);padding:1.8rem;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s,box-shadow .3s;cursor:pointer;}
+.exp-tl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--darkred),var(--red));}
+.exp-tl-card:hover{border-color:var(--border);transform:scale(1.02);box-shadow:0 8px 30px rgba(232,25,44,.12);}
+
+/* left card sits in col 1, right card in col 3 */
+.exp-row .exp-tl-card.left{grid-column:1;}
+.exp-row .exp-tl-card.right{grid-column:3;}
+.exp-row .exp-mid{grid-column:2;display:flex;justify-content:center;padding-top:1.6rem;}
+
+/* Empty spacer for alternating side */
+.exp-row .exp-empty{grid-column:1;}
+.exp-row .exp-empty.right-empty{grid-column:3;}
+
+/* Card content */
+.exp-tl-icon{font-size:1.4rem;margin-bottom:.7rem;}
+.exp-tl-cat{display:inline-block;font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);border:1px solid var(--border2);padding:.2rem .65rem;margin-bottom:.8rem;}
+.exp-tl-role{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.25;margin-bottom:.25rem;}
+.exp-tl-co{font-size:.8rem;color:var(--red2);font-weight:600;}
+.exp-tl-period{font-size:.68rem;color:var(--dimmer);margin-top:.18rem;margin-bottom:1rem;}
+.exp-tl-metrics{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.9rem;border-top:1px solid var(--border2);margin-bottom:.9rem;}
+.exp-tl-mv{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--red);line-height:1;}
+.exp-tl-ml{font-size:.54rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer);margin-top:.1rem;}
+.exp-tl-cta{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer);transition:color .3s;}
+.exp-tl-card:hover .exp-tl-cta{color:var(--red);}
+
+/* Center dot */
+.exp-dot-wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
+.exp-dot{width:20px;height:20px;border-radius:50%;background:var(--dark3);border:2px solid rgba(232,25,44,.35);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;flex-shrink:0;position:relative;z-index:1;}
+.exp-dot-inner{width:8px;height:8px;border-radius:50%;background:rgba(232,25,44,.35);transition:all .3s;}
+.exp-dot-ring{position:absolute;width:20px;height:20px;border-radius:50%;border:2px solid var(--red);opacity:0;}
+.exp-row.vis .exp-dot{border-color:rgba(232,25,44,.7);background:var(--dark2);}
+.exp-row.vis .exp-dot-inner{background:var(--red);}
+/* Active (current) dot */
+.exp-dot.is-current{background:var(--red);border-color:var(--red);box-shadow:0 0 20px rgba(232,25,44,.6);}
+.exp-dot.is-current .exp-dot-inner{background:var(--white);}
+.exp-dot.is-current .exp-dot-ring{animation:expDotPulse 2s ease-out infinite;}
+@keyframes expDotPulse{0%{transform:scale(1);opacity:.8;}100%{transform:scale(2.8);opacity:0;}}
+/* Education dot style */
+.exp-dot.is-edu{border-color:rgba(232,25,44,.5)!important;}
+
+/* Current badge */
+.exp-current-badge{display:inline-block;background:rgba(232,25,44,.15);color:var(--red2);
+  border:1px solid var(--border);font-size:.56rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;padding:.15rem .55rem;margin-top:.5rem;
+  animation:expBadgePulse 2.5s ease-in-out infinite;}
+@keyframes expBadgePulse{0%,100%{background:rgba(232,25,44,.15);}50%{background:rgba(232,25,44,.35);}}
+
+/* Stat cards below timeline */
+.exp-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;max-width:600px;margin-left:auto;margin-right:auto;}
+.exp-stat-card{background:var(--dark2);border:1px solid var(--border2);padding:1.3rem;text-align:center;
+  transition:border-color .3s,transform .3s;}
+.exp-stat-card:hover{border-color:var(--red);transform:translateY(-3px);}
+.exp-sc-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1;}
+.exp-sc-lbl{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer);margin-top:.28rem;}
+@keyframes expFloat1{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes expFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+@keyframes expFloat3{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.exp-stat-card:nth-child(1){animation:expFloat1 3.5s ease-in-out infinite;}
+.exp-stat-card:nth-child(2){animation:expFloat2 4s ease-in-out .5s infinite;}
+.exp-stat-card:nth-child(3){animation:expFloat3 3s ease-in-out 1s infinite;}
+
+/* Mobile */
+@media(max-width:768px){
+  .exp-spine{left:20px;transform:none;}
+  .exp-row{grid-template-columns:40px 1fr;margin-bottom:2rem;}
+  .exp-tl-card.left{display:none;}
+  .exp-tl-card.right{grid-column:2;}
+  .exp-row .exp-empty,.exp-row .exp-empty.right-empty{display:none;}
+  .exp-mid{grid-column:1;padding-top:1.4rem;}
+  .exp-tl-card{padding:1.3rem;}
+  .exp-tl-role{font-size:1rem;}
+  .exp-stats-row{grid-template-columns:1fr 1fr 1fr;max-width:100%;}
+  .exp-sc-num{font-size:1.7rem;}
 }
-.exp-cards-col{display:flex;flex-direction:column;gap:1px;background:var(--border2);}
-.exp-card-new{background:var(--dark);padding:2rem;position:relative;overflow:hidden;transition:background .3s;cursor:pointer;}
-.exp-card-new::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s;}
-.exp-card-new:hover{background:var(--dark2);}
-.exp-card-new:hover::before{background:linear-gradient(90deg,var(--darkred),var(--red));}
-.ecn-inner{display:flex;flex-direction:column;height:100%;}
-.ecn-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem;}
-.ecn-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1px solid var(--border2);transition:border-color .3s;flex-shrink:0;}
-.exp-card-new:hover .ecn-icon{border-color:var(--red);}
-.ecn-cat{font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);border:1px solid var(--border2);padding:.2rem .6rem;}
-.ecn-role{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--white);line-height:1.25;margin-bottom:.3rem;}
-.ecn-co{font-size:.8rem;color:var(--red2);font-weight:600;}
-.ecn-period{font-size:.7rem;color:var(--dimmer);margin-top:.2rem;margin-bottom:1rem;}
-.ecn-metrics{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.9rem;border-top:1px solid var(--border2);}
-.ecn-mv{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--red);line-height:1;}
-.ecn-ml{font-size:.56rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--dimmer);margin-top:.1rem;}
-.ecn-cta{margin-top:.9rem;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer);transition:color .3s;}
-.exp-card-new:hover .ecn-cta{color:var(--red);}
-/* Career Visual */
-.exp-visual-col{
-  width:100%;
-  max-width:800px;
-  margin:0 auto;
-  position:relative;   /* remove sticky */
-}.exp-visual-wrap{position:relative;}
-.cv-path{background:var(--dark2);border:1px solid var(--border2);padding:2rem;position:relative;overflow:hidden;}
-.cv-path::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--darkred),var(--red));}
-.cv-title{font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.8rem;}
-.cv-track{position:relative;padding-left:2.2rem;}
-.cv-spine{position:absolute;left:.65rem;top:.4rem;width:2px;height:0;background:linear-gradient(to bottom,var(--red),rgba(232,25,44,.1));}
-.cv-spine.animated{animation:cvSpineGrow 1.5s ease forwards;}
-@keyframes cvSpineGrow{from{height:0;}to{height:calc(100% - .8rem);}}
-.cv-node{position:relative;margin-bottom:1.8rem;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;transition:transform .2s;}
-.cv-node:last-child{margin-bottom:0;}
-.cv-node:hover{transform:translateX(4px);}
-.cv-dot-wrap{position:relative;flex-shrink:0;}
-.cv-dot{width:18px;height:18px;border-radius:50%;background:var(--dark3);border:2px solid rgba(232,25,44,.3);display:flex;align-items:center;justify-content:center;transition:all .3s;margin-top:.1rem;}
-.cv-dot-inner{width:7px;height:7px;border-radius:50%;background:rgba(232,25,44,.3);transition:all .3s;}
-.cv-dot-pulse{position:absolute;top:-1px;left:-1px;width:20px;height:20px;border-radius:50%;border:2px solid var(--red);opacity:0;}
-.cv-node.active .cv-dot{background:var(--red);border-color:var(--red);box-shadow:0 0 16px rgba(232,25,44,.5);}
-.cv-node.active .cv-dot-inner{background:var(--white);}
-.cv-node.active .cv-dot-pulse{animation:cvDotPulse 2s ease-out infinite;}
-@keyframes cvDotPulse{0%{transform:scale(1);opacity:.8;}100%{transform:scale(2.5);opacity:0;}}
-.cv-node:hover .cv-dot{border-color:var(--red);background:rgba(232,25,44,.2);}
-.cv-node:hover .cv-dot-inner{background:var(--red);}
-.edu-dot{border-color:rgba(232,25,44,.5)!important;}
-.cv-node-year{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.25rem;}
-.cv-node-role{font-size:.85rem;font-weight:700;color:var(--white);line-height:1.3;}
-.cv-node-co{font-size:.72rem;color:var(--dimmer);margin-top:.12rem;}
-.cv-node-badge{display:inline-block;background:rgba(232,25,44,.15);color:var(--red2);border:1px solid var(--border);font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .55rem;margin-top:.4rem;}
-.cv-node-badge.current{animation:cvBadgePulse 2.5s ease-in-out infinite;}
-@keyframes cvBadgePulse{0%,100%{background:rgba(232,25,44,.15);}50%{background:rgba(232,25,44,.35);}}
-.cv-stat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-top:1.5rem;}
-.cv-stat-card{background:var(--dark3);border:1px solid var(--border2);padding:1rem;text-align:center;transition:border-color .3s,transform .3s;}
-.cv-stat-card:hover{border-color:var(--red);transform:translateY(-3px);}
-.cv-sc-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--red);line-height:1;}
-.cv-sc-lbl{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer);margin-top:.25rem;}
-@keyframes cvFloat1{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-@keyframes cvFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
-@keyframes cvFloat3{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.animate-float-1{animation:cvFloat1 3.5s ease-in-out infinite;}
-.animate-float-2{animation:cvFloat2 4s ease-in-out .5s infinite;}
-.animate-float-3{animation:cvFloat3 3s ease-in-out 1s infinite;}
-@media(max-width:1100px){.exp-new-layout{grid-template-columns:1fr;}.exp-visual-col{position:static;}}
-@media(max-width:768px){.exp-card-new{padding:1.4rem;}.ecn-role{font-size:1rem;}.cv-stat-cards{grid-template-columns:1fr 1fr 1fr;}.cv-sc-num{font-size:1.5rem;}}
+@media(max-width:480px){
+  .exp-stats-row{grid-template-columns:1fr 1fr 1fr;}
+  .exp-sc-num{font-size:1.4rem;}
+}
 
 /* ── PROJECTS ── */
 #projects{background:var(--dark);position:relative;overflow:hidden;}
@@ -1356,7 +1385,7 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
 
 
 
-<!-- ══ EXPERIENCE — CARD + POPUP STYLE ══ -->
+<!-- ══ EXPERIENCE — CENTERED TIMELINE ══ -->
 <section id="experience" aria-label="Professional Experience">
   <div class="cont">
     <div style="text-align:center;margin-bottom:4rem;" class="reveal">
@@ -1366,188 +1395,144 @@ footer{background:#020407;padding:1.6rem 5%;padding-bottom:calc(1.6rem + env(saf
       <p class="sp" style="max-width:520px;margin:.5rem auto 0;font-size:.82rem;opacity:.75;">Click any role to explore the full story.</p>
     </div>
 
-    <!-- TWO COLUMN: Cards left, Visual right -->
-    <div class="exp-new-layout">
+    <div class="exp-timeline-center">
 
-      <!-- LEFT: Experience Cards (like projects) -->
-      <div class="exp-new-layout">
+      <!-- Animated spine -->
+      <div class="exp-spine" id="expSpine"></div>
 
-  <div class="exp-visual-col full-width">
-    <div class="exp-visual-wrap">
-      <div class="cv-path">
-        <!-- timeline content -->
+      <!-- ROW 1: UFO Moviez — LEFT -->
+      <div class="exp-row reveal">
+        <div class="exp-tl-card left" onclick="openExpModal('ufo')">
+          <div class="exp-tl-icon">🎬</div>
+          <span class="exp-tl-cat">Media &amp; Entertainment</span>
+          <div class="exp-tl-role">Asst. Manager — PM (Special Projects)</div>
+          <div class="exp-tl-co">UFO Moviez India Limited</div>
+          <div class="exp-tl-period">Aug 2024 – Present · Mumbai</div>
+          <div class="exp-tl-metrics">
+            <div><div class="exp-tl-mv">₹3Cr</div><div class="exp-tl-ml">Deal</div></div>
+            <div><div class="exp-tl-mv">1.2K+</div><div class="exp-tl-ml">Screens</div></div>
+            <div><div class="exp-tl-mv">50+</div><div class="exp-tl-ml">O&amp;M Sites</div></div>
+            <div><div class="exp-tl-mv">6</div><div class="exp-tl-ml">Depts</div></div>
+          </div>
+          <div class="exp-tl-cta">Explore Role →</div>
+          <div class="exp-current-badge">Current</div>
+        </div>
+        <div class="exp-mid">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot is-current"><div class="exp-dot-inner"></div><div class="exp-dot-ring"></div></div>
+          </div>
+        </div>
+        <div class="exp-empty right-empty"></div>
+      </div>
+
+      <!-- ROW 2: Ken Research — RIGHT -->
+      <div class="exp-row reveal">
+        <div class="exp-empty"></div>
+        <div class="exp-mid">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+          </div>
+        </div>
+        <div class="exp-tl-card right" onclick="openExpModal('ken')">
+          <div class="exp-tl-icon">🔍</div>
+          <span class="exp-tl-cat">Management Consulting</span>
+          <div class="exp-tl-role">Senior Research Analyst</div>
+          <div class="exp-tl-co">Ken Research Pvt. Ltd</div>
+          <div class="exp-tl-period">Apr 2023 – Feb 2024 · Gurugram</div>
+          <div class="exp-tl-metrics">
+            <div><div class="exp-tl-mv">5+</div><div class="exp-tl-ml">Projects</div></div>
+            <div><div class="exp-tl-mv">20%</div><div class="exp-tl-ml">Revenue ↑</div></div>
+            <div><div class="exp-tl-mv">95%+</div><div class="exp-tl-ml">Accuracy</div></div>
+          </div>
+          <div class="exp-tl-cta">Explore Role →</div>
+        </div>
+      </div>
+
+      <!-- ROW 3: Qatar — LEFT -->
+      <div class="exp-row reveal">
+        <div class="exp-tl-card left" onclick="openExpModal('qdb')">
+          <div class="exp-tl-icon">🌍</div>
+          <span class="exp-tl-cat">International Research · Qatar</span>
+          <div class="exp-tl-role">Live Project Researcher</div>
+          <div class="exp-tl-co">Qatar Development Bank × Ken Research</div>
+          <div class="exp-tl-period">Nov – Dec 2023 · Qatar</div>
+          <div class="exp-tl-metrics">
+            <div><div class="exp-tl-mv">100+</div><div class="exp-tl-ml">C-Suite Interviews</div></div>
+            <div><div class="exp-tl-mv">30+</div><div class="exp-tl-ml">SME Clients</div></div>
+          </div>
+          <div class="exp-tl-cta">Explore Role →</div>
+        </div>
+        <div class="exp-mid">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+          </div>
+        </div>
+        <div class="exp-empty right-empty"></div>
+      </div>
+
+      <!-- ROW 4: MBA — RIGHT -->
+      <div class="exp-row reveal">
+        <div class="exp-empty"></div>
+        <div class="exp-mid">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot is-edu"><div class="exp-dot-inner"></div></div>
+          </div>
+        </div>
+        <div class="exp-tl-card right" onclick="openExpModal('mba')">
+          <div class="exp-tl-icon">🎓</div>
+          <span class="exp-tl-cat">Education</span>
+          <div class="exp-tl-role">MBA — Marketing Management</div>
+          <div class="exp-tl-co">Welingkar Institute of Management</div>
+          <div class="exp-tl-period">Sep 2021 – May 2023 · Mumbai</div>
+          <div class="exp-tl-metrics">
+            <div><div class="exp-tl-mv">2</div><div class="exp-tl-ml">Internships</div></div>
+            <div><div class="exp-tl-mv">Top</div><div class="exp-tl-ml">B-School</div></div>
+          </div>
+          <div class="exp-tl-cta">Explore Details →</div>
+        </div>
+      </div>
+
+      <!-- ROW 5: Meera — LEFT -->
+      <div class="exp-row reveal">
+        <div class="exp-tl-card left" onclick="openExpModal('meera')">
+          <div class="exp-tl-icon">💼</div>
+          <span class="exp-tl-cat">Finance &amp; Sales</span>
+          <div class="exp-tl-role">Accounting &amp; Sales Executive</div>
+          <div class="exp-tl-co">Meera Synthetics Pvt. Ltd</div>
+          <div class="exp-tl-period">May 2018 – Jul 2019 · Surat</div>
+          <div class="exp-tl-metrics">
+            <div><div class="exp-tl-mv">15%</div><div class="exp-tl-ml">Cost ↓</div></div>
+            <div><div class="exp-tl-mv">25+</div><div class="exp-tl-ml">B2B Accounts</div></div>
+          </div>
+          <div class="exp-tl-cta">Explore Role →</div>
+        </div>
+        <div class="exp-mid">
+          <div class="exp-dot-wrap">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+          </div>
+        </div>
+        <div class="exp-empty right-empty"></div>
+      </div>
+
+    </div><!-- /exp-timeline-center -->
+
+    <!-- Floating stat cards below timeline -->
+    <div class="exp-stats-row reveal">
+      <div class="exp-stat-card">
+        <div class="exp-sc-num">3+</div>
+        <div class="exp-sc-lbl">Years Experience</div>
+      </div>
+      <div class="exp-stat-card">
+        <div class="exp-sc-num">4</div>
+        <div class="exp-sc-lbl">Organisations</div>
+      </div>
+      <div class="exp-stat-card">
+        <div class="exp-sc-num">3</div>
+        <div class="exp-sc-lbl">Cities / Countries</div>
       </div>
     </div>
+
   </div>
-
-</div>
-
-        <div class="exp-card-new reveal" onclick="openExpModal('ken')">
-          <div class="ecn-inner">
-            <div class="ecn-top">
-              <div class="ecn-icon">🔍</div>
-              <span class="ecn-cat">Management Consulting</span>
-            </div>
-            <div class="ecn-role">Senior Research Analyst</div>
-            <div class="ecn-co">Ken Research Pvt. Ltd</div>
-            <div class="ecn-period">Apr 2023 – Feb 2024 · Gurugram</div>
-            <div class="ecn-metrics">
-              <div class="ecn-m"><div class="ecn-mv">5+</div><div class="ecn-ml">Projects</div></div>
-              <div class="ecn-m"><div class="ecn-mv">20%</div><div class="ecn-ml">Revenue ↑</div></div>
-              <div class="ecn-m"><div class="ecn-mv">95%+</div><div class="ecn-ml">Accuracy</div></div>
-            </div>
-            <div class="ecn-cta">Explore Role →</div>
-          </div>
-        </div>
-
-        <div class="exp-card-new reveal" onclick="openExpModal('qdb')">
-          <div class="ecn-inner">
-            <div class="ecn-top">
-              <div class="ecn-icon">🌍</div>
-              <span class="ecn-cat">International Research · Qatar</span>
-            </div>
-            <div class="ecn-role">Live Project Researcher</div>
-            <div class="ecn-co">Qatar Development Bank × Ken Research</div>
-            <div class="ecn-period">Nov – Dec 2023 · Qatar</div>
-            <div class="ecn-metrics">
-              <div class="ecn-m"><div class="ecn-mv">100+</div><div class="ecn-ml">C-Suite Interviews</div></div>
-              <div class="ecn-m"><div class="ecn-mv">30+</div><div class="ecn-ml">SME Clients</div></div>
-            </div>
-            <div class="ecn-cta">Explore Role →</div>
-          </div>
-        </div>
-
-        <div class="exp-card-new reveal" onclick="openExpModal('mba')">
-          <div class="ecn-inner">
-            <div class="ecn-top">
-              <div class="ecn-icon">🎓</div>
-              <span class="ecn-cat">Education</span>
-            </div>
-            <div class="ecn-role">MBA — Marketing Management</div>
-            <div class="ecn-co">Welingkar Institute of Management</div>
-            <div class="ecn-period">Sep 2021 – May 2023 · Mumbai</div>
-            <div class="ecn-metrics">
-              <div class="ecn-m"><div class="ecn-mv">2</div><div class="ecn-ml">Internships</div></div>
-              <div class="ecn-m"><div class="ecn-mv">Top</div><div class="ecn-ml">B-School</div></div>
-            </div>
-            <div class="ecn-cta">Explore Details →</div>
-          </div>
-        </div>
-
-        <div class="exp-card-new reveal" onclick="openExpModal('meera')">
-          <div class="ecn-inner">
-            <div class="ecn-top">
-              <div class="ecn-icon">💼</div>
-              <span class="ecn-cat">Finance & Sales</span>
-            </div>
-            <div class="ecn-role">Accounting &amp; Sales Executive</div>
-            <div class="ecn-co">Meera Synthetics Pvt. Ltd</div>
-            <div class="ecn-period">May 2018 – Jul 2019 · Surat</div>
-            <div class="ecn-metrics">
-              <div class="ecn-m"><div class="ecn-mv">15%</div><div class="ecn-ml">Cost ↓</div></div>
-              <div class="ecn-m"><div class="ecn-mv">25+</div><div class="ecn-ml">B2B Accounts</div></div>
-            </div>
-            <div class="ecn-cta">Explore Role →</div>
-          </div>
-        </div>
-
-      </div><!-- /exp-cards-col -->
-
-      <!-- RIGHT: Animated Career Visual -->
-      <div class="exp-visual-col reveal fr">
-        <div class="exp-visual-wrap">
-
-          <!-- Animated vertical career path -->
-          <div class="cv-path">
-            <div class="cv-title">CAREER TIMELINE</div>
-
-            <div class="cv-track">
-              <!-- Animated spine line -->
-              <div class="cv-spine"></div>
-
-              <div class="cv-node active" data-id="ufo">
-                <div class="cv-dot-wrap">
-                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
-                  <div class="cv-dot-pulse"></div>
-                </div>
-                <div class="cv-node-content">
-                  <div class="cv-node-year">2024 – Present</div>
-                  <div class="cv-node-role">Asst. Manager PM</div>
-                  <div class="cv-node-co">UFO Moviez</div>
-                  <div class="cv-node-badge current">Current</div>
-                </div>
-              </div>
-
-              <div class="cv-node" data-id="ken">
-                <div class="cv-dot-wrap">
-                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
-                </div>
-                <div class="cv-node-content">
-                  <div class="cv-node-year">2023 – 2024</div>
-                  <div class="cv-node-role">Sr. Research Analyst</div>
-                  <div class="cv-node-co">Ken Research</div>
-                </div>
-              </div>
-
-              <div class="cv-node" data-id="qdb">
-                <div class="cv-dot-wrap">
-                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
-                </div>
-                <div class="cv-node-content">
-                  <div class="cv-node-year">Nov – Dec 2023</div>
-                  <div class="cv-node-role">Live Researcher</div>
-                  <div class="cv-node-co">Qatar Dev. Bank</div>
-                </div>
-              </div>
-
-              <div class="cv-node" data-id="mba">
-                <div class="cv-dot-wrap">
-                  <div class="cv-dot edu-dot"><div class="cv-dot-inner"></div></div>
-                </div>
-                <div class="cv-node-content">
-                  <div class="cv-node-year">2021 – 2023</div>
-                  <div class="cv-node-role">MBA Marketing</div>
-                  <div class="cv-node-co">Welingkar</div>
-                </div>
-              </div>
-
-              <div class="cv-node" data-id="meera">
-                <div class="cv-dot-wrap">
-                  <div class="cv-dot"><div class="cv-dot-inner"></div></div>
-                </div>
-                <div class="cv-node-content">
-                  <div class="cv-node-year">2018 – 2019</div>
-                  <div class="cv-node-role">Acctg &amp; Sales Exec</div>
-                  <div class="cv-node-co">Meera Synthetics</div>
-                </div>
-              </div>
-
-            </div><!-- /cv-track -->
-          </div><!-- /cv-path -->
-
-          <!-- Floating stats cards -->
-          <div class="cv-stat-cards">
-            <div class="cv-stat-card animate-float-1">
-              <div class="cv-sc-num">3+</div>
-              <div class="cv-sc-lbl">Years Experience</div>
-            </div>
-            <div class="cv-stat-card animate-float-2">
-              <div class="cv-sc-num">4</div>
-              <div class="cv-sc-lbl">Organisations</div>
-            </div>
-            <div class="cv-stat-card animate-float-3">
-              <div class="cv-sc-num">3</div>
-              <div class="cv-sc-lbl">Cities / Countries</div>
-            </div>
-          </div>
-
-        </div>
-      </div><!-- /exp-visual-col -->
-
-    </div><!-- /exp-new-layout -->
-  </div>
-
-  <!-- Experience Modals (reuses existing modal-overlay) -->
 </section>
 
 <!-- PROJECTS -->
@@ -1810,15 +1795,25 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
   // Animate spine on scroll
-  const spineObs=new IntersectionObserver(es=>{
+  // Animate experience spine on scroll
+  const expSpineObs=new IntersectionObserver(es=>{
     es.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('animated');expSpineObs.disconnect();}
+    });
+  },{threshold:.1});
+  const expSpineEl=document.getElementById('expSpine');
+  if(expSpineEl)expSpineObs.observe(expSpineEl);
+
+  // Animate exp rows on scroll
+  const expRowObs=new IntersectionObserver(es=>{
+    es.forEach((e,i)=>{
       if(e.isIntersecting){
-        e.target.classList.add('animated');
+        setTimeout(()=>e.target.classList.add('vis'),i*150);
+        expRowObs.unobserve(e.target);
       }
     });
-  },{threshold:.2});
-  const spine=document.querySelector('.cv-spine');
-  if(spine){spineObs.observe(spine);}
+  },{threshold:.15});
+  document.querySelectorAll('.exp-row').forEach(el=>expRowObs.observe(el));
 });
 
 /* ── SKILL CHART ── */
@@ -1854,7 +1849,7 @@ const c=document.getElementById('cur'),r=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
 (function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(t);})();
-document.querySelectorAll('a,button,.pcard,.ecard,.ui,.ahl,.tool-card,.rec-card,.sc,.exp-tl-item,.legend-item,.exp-card-new,.cv-node,.cv-stat-card').forEach(el=>{
+document.querySelectorAll('a,button,.pcard,.ecard,.ui,.ahl,.tool-card,.rec-card,.sc,.exp-tl-item,.legend-item,.exp-tl-card,.exp-stat-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{c.style.width='4px';c.style.height='4px';r.style.width='44px';r.style.height='44px';});
   el.addEventListener('mouseleave',()=>{c.style.width='8px';c.style.height='8px';r.style.width='32px';r.style.height='32px';});
 });
