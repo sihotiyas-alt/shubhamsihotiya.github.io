@@ -4,31 +4,31 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://shubhamsihotiya.github.io/</loc>
+    <loc>https://www.shubhamsihotiya.com/</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shubhamsihotiya.github.io/#about</loc>
+    <loc>https://www.shubhamsihotiya.com/#about</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shubhamsihotiya.github.io/#experience</loc>
+    <loc>https://www.shubhamsihotiya.com/#experience</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shubhamsihotiya.github.io/#projects</loc>
+    <loc>https://www.shubhamsihotiya.com/#projects</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shubhamsihotiya.github.io/#contact</loc>
+    <loc>https://www.shubhamsihotiya.com/#contact</loc>
     <lastmod>2025-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
