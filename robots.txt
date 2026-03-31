@@ -1,0 +1,25 @@
+# Shubham Sihotiya — Portfolio
+# https://shubhamsihotiya.github.io
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Allow all major search engine bots explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap
+Sitemap: https://shubhamsihotiya.github.io/sitemap.xml
